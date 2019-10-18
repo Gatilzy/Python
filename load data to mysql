@@ -1,0 +1,8 @@
+      import pandas as pd
+      import pymysql
+      for index,row in df_mapping_filter[pd.notna(df_mapping_filter.SourceFieldAlias)].iterrows():
+          df_source.insert(0,row["SourceFieldAlias"],df_source[row["SourceField"]])
+      df_mapping_filter.apply(lambda row: changeFieldName(row), axis = 1)
+      ColumnList = df_mapping_filter.SourceField
+      ColumnMappingDict = df_mapping_filter[['StageField','SourceField']].set_index('SourceField').T.to_dict('r')
+      df_filter.to_sql(db_tbName, engine, index= False,if_exists='append')
