@@ -1,0 +1,18 @@
+df_file = pandas.read_excel(io, sheet_name=0, header=0,dtype=None,
+engine=None,na_values=None, keep_default_na=True)
+
+1. na_values : scalar, str, list-like, or dict, default None
+
+Additional strings to recognize as NA/NaN. If dict passed, 
+specific per-column NA values. By default the following values are
+interpreted as NaN: ‘’, ‘#N/A’, ‘#N/A N/A’, ‘#NA’, ‘-1.#IND’, ‘-1.#QNAN’, 
+‘-NaN’, ‘-nan’, ‘1.#IND’, ‘1.#QNAN’, ‘N/A’, ‘NA’, ‘NULL’, ‘NaN’, ‘n/a’, ‘nan’, ‘null’.
+
+2. keep_default_na : bool, default True
+
+If na_values are specified and keep_default_na is False the default NaN values are overridden,
+otherwise they’re appended to.
+
+so you can write as 
+df_t_file = pd.read_csv(t_file, skiprows=first_header, index_col=False,dtype = 'str',error_bad_lines=False,na_values="NaNNaNNNNN",keep_default_na = False)
+df_t_file = read_excel(sourceName, header=first_header, index_col=None,dtype = dtypen,error_bad_lines=False,usecols = scopes,na_values="NaNNaNNNNN",keep_default_na = False)
