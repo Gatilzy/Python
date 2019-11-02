@@ -1,0 +1,40 @@
+import xlrd
+import xlwt
+from xlutils.copy import copy
+import pymysql
+import os
+r_excel = r"../SourceFile/WPP Vendor Master Data Form - Mapping.xls"
+Split_file = r'../Split/'
+#D:\Cognizant\DC2\VendorData\WPP Vendor Master Data Form - Mapping.xls
+rd_excel = xlrd.open_workbook(r_excel,formatting_info = True)
+new_excel = copy(rd_excel)
+ws = new_excel.get_sheet(0)
+db = pymysql.connect("localhost","root","root","world")
+cursor = db.cursor()
+cursor.execute("SELECT * FROM Master_Vendor")
+data = cursor.fetchall()
+for i in data:
+    name = i[0]
+    ws.write(4, 5, i[1])
+    ws.write(6, 5, i[2]) 
+    ws.write(8, 5, i[3]) 
+    ws.write(10, 5, i[4]) 
+    ws.write(12, 5, i[5]) 
+    ws.write(14, 5, i[6]) 
+    ws.write(16, 5, i[7]) 
+    ws.write(18, 5, i[8])
+    ws.write(20, 5, i[9])
+    ws.write(22, 5, i[10])
+    ws.write(24, 5, i[11]) 
+    ws.write(26, 5, i[12])
+    ws.write(29, 5, i[13])
+    ws.write(31, 5, i[14])
+    ws.write(34, 5, i[15])
+    ws.write(36, 5, i[16])
+    ws.write(38, 5, i[17])
+    ws.write(40, 5, i[18])
+    ws.write(42, 5, i[19])
+    ws.write(44, 5, i[20])
+    new_excel.save(Split_file+str(name)+'.xls')
+cursor.close()
+db.close()
