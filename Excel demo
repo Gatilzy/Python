@@ -1,3 +1,10 @@
+#Simple python code to generate the files with the same format as demo file.
+#Notes:
+#formatting_info = True -- parameter can keep the same format
+#from xlutils.copy import copy -- copy excel 
+#ws = new_excel.get_sheet(0)
+
+
 import xlrd
 import xlwt
 from xlutils.copy import copy
@@ -38,3 +45,4 @@ for i in data:
     new_excel.save(Split_file+str(name)+'.xls')
 cursor.close()
 db.close()
+
